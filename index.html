@@ -22,41 +22,15 @@
 <body style="margin: 0;background: #a6691d">
 <br><br>
 <h2>Example of avia and hotels search form on English</h2>
-<div class="twidget-container" id="twidget1"></div>
+<div class="twidget-container" id="twidget"></div>
 <br><br>
-<h2>Example of avia and hotels search form on Russian</h2>
-<div class="twidget-container" id="twidget2"></div>
-<br><br>
-<h2>Example of avia search form on Russian</h2>
-<div class="twidget-container" id="twidget3"></div>
-<br><br>
-<h2>Example of hotels search form on English</h2>
-<div class="twidget-container" id="twidget4"></div>
 <script>
-        $('#twidget1').twidget({
+        $('#twidget').twidget({
             locale: 'en',
-            marker: 1234,
+            marker: 78606,
             default_origin: 'SVO',
             default_destination: 'ekat',
             default_hotel_location: 'rio'
-        });
-        $('#twidget2').twidget({
-            locale: 'ru',
-            marker: 3456,
-            type: 'avia_hotel',
-            open_in_new_tab: false,
-            default_origin: 'жуковский',
-            default_destination: 'belgorod',
-            default_hotel_location: 'prague'
-        });
-        $('#twidget3').twidget({
-            type: 'avia',
-            locale: 'ru'
-        });
-        $('#twidget4').twidget({
-            locale: 'en',
-            marker: 3456,
-            type: 'hotel'
         });
 </script>
 </body>
