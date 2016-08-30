@@ -1,0 +1,60 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Travel Form Test</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--adding css files-->
+    <link rel="stylesheet" type="text/css" href="./reset.css">
+    <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.standalone.css">
+    <link rel="stylesheet" type="text/css" href="./style.css?v_1207">
+    <!--adding js files-->
+    <script src="./jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="./jquery.twidget.js?v_1207"></script>
+
+    <!--adding google font-->
+    <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" type="text/css">-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+</head>
+<body style="margin: 0;background: #a6691d">
+<br><br>
+<h2>Example of avia and hotels search form on English</h2>
+<div class="twidget-container" id="twidget1"></div>
+<br><br>
+<h2>Example of avia and hotels search form on Russian</h2>
+<div class="twidget-container" id="twidget2"></div>
+<br><br>
+<h2>Example of avia search form on Russian</h2>
+<div class="twidget-container" id="twidget3"></div>
+<br><br>
+<h2>Example of hotels search form on English</h2>
+<div class="twidget-container" id="twidget4"></div>
+<script>
+        $('#twidget1').twidget({
+            locale: 'en',
+            marker: 1234,
+            default_origin: 'SVO',
+            default_destination: 'ekat',
+            default_hotel_location: 'rio'
+        });
+        $('#twidget2').twidget({
+            locale: 'ru',
+            marker: 3456,
+            type: 'avia_hotel',
+            open_in_new_tab: false,
+            default_origin: 'жуковский',
+            default_destination: 'belgorod',
+            default_hotel_location: 'prague'
+        });
+        $('#twidget3').twidget({
+            type: 'avia',
+            locale: 'ru'
+        });
+        $('#twidget4').twidget({
+            locale: 'en',
+            marker: 3456,
+            type: 'hotel'
+        });
+</script>
+</body></html>
