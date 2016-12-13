@@ -1,7 +1,7 @@
 /*
  *  jquery-boilerplate - v4.0.0
  *  A jump-start for jQuery plugins development.
- *  http://jqueryboilerplate.com
+ *  https://jqueryboilerplate.com
  *
  *  Made by Zeno Rocha
  *  Under MIT License
@@ -31,6 +31,7 @@
             open_in_new_tab: true,
             default_origin: '',
             default_destination: '',
+			lock_destination: false,
             default_hotel_location: '',
             localization: {
                 avia_tab_caption: 'FLIGHT',
@@ -74,7 +75,7 @@
                 avia_logo_link: 'https://www.jetradar.com/',
                 avia_logo_content: '<div class="twidget-logo-image twidget-jetradar-logo-img" width="30" height="30"></div>jetradar',
                 hotel_logo_link: 'https://hotellook.com/',
-                avia_submit_domain : 'http://jetradar.com/searches/new'
+                avia_submit_domain : 'https://jetradar.com/searches/new'
             }
         },
         // globals
@@ -138,7 +139,7 @@
                 avia_logo_link: 'https://www.aviasales.ru/',
                 avia_logo_content: '<div class="twidget-logo-image twidget-aviasales-logo-img" width="30" height="30"></div>aviasales',
                 hotel_logo_link: 'https://hotellook.ru/',
-                avia_submit_domain : 'http://hydra.aviasales.ru/searches/new'
+                avia_submit_domain : 'https://hydra.aviasales.ru/searches/new'
             };
         }
 
@@ -477,7 +478,7 @@
 
             /* origin city from parameters */
             if(_this.settings.default_origin) {
-                $.getJSON("http://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+_this.settings.default_origin, function (data) {
+                $.getJSON("https://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+_this.settings.default_origin, function (data) {
                     /* input focusout update */
                     if(data){
                         container.find("#twidget-origin").off('focusout').on('focusout', function(){
@@ -492,7 +493,7 @@
                 });
             } else {
             /* or getting user origin city from whereami */
-                $.getJSON("http://www.travelpayouts.com/whereami?locale="+_this.settings.locale, function (data) {
+                $.getJSON("https://www.travelpayouts.com/whereami?locale="+_this.settings.locale, function (data) {
                     /* input focusout update */
                     if(data){
                         container.find("#twidget-origin").off('focusout').on('focusout', function(){
@@ -520,7 +521,7 @@
                     this_input = $(this),
                     citiesSortedArr = [],
                     citiesOrigSort = [];
-                $.getJSON("http://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+v, function (data) {
+                $.getJSON("https://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+v, function (data) {
                     container.find(".twidget-origin .twidget-auto-fill-wrapper ul li").remove();
                     $.each(data, function(key, value){
                         if(value.city_name) {
@@ -607,7 +608,7 @@
 
             /* destination from parameters */
             if(_this.settings.default_destination) {
-                $.getJSON("http://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+_this.settings.default_destination, function (data) {
+                $.getJSON("https://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+_this.settings.default_destination, function (data) {
                     /* input focusout update start */
                     if(data){
                         container.find("#twidget-destination").off('focusout').on('focusout', function(){
@@ -622,9 +623,10 @@
                     container.find('#twidget-destination').trigger('focusout');
                 });
             }
-
+				
             /* destination city auto complete */
-            container.find("#twidget-destination").keydown(function() {
+           if(_this.settings.lock_destination == false){
+			container.find("#twidget-destination").keydown(function() {
                 container.find(".twidget-destination .twidget-pseudo-name").text('');
                 container.find(".twidget-destination .twidget-pseudo-country-name").text('');
                 destination_iata_input.val('');
@@ -635,7 +637,7 @@
                     this_input = $(this),
                     citiesSortedArr = [],
                     citiesOrigSort = [];
-                $.getJSON("http://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+v, function (data) {
+                $.getJSON("https://autocomplete.travelpayouts.com/jravia?locale="+_this.settings.locale+"&with_countries=false&q="+v, function (data) {
                     container.find(".twidget-destination .twidget-auto-fill-wrapper ul li").remove();
                     $.each(data, function(key, value){
                         if(value.city_name) {
@@ -718,11 +720,11 @@
                     }
                 });
             });
-
+		   }
 
             /* hotel location from parameters */
             if(_this.settings.default_destination) {
-                $.getJSON("http://engine.hotellook.com/api/v2/lookup.json?query="+_this.settings.default_hotel_location+"&lang="+_this.settings.locale+"&limit=4", function (data) {
+                $.getJSON("https://engine.hotellook.com/api/v2/lookup.json?query="+_this.settings.default_hotel_location+"&lang="+_this.settings.locale+"&limit=4", function (data) {
                     /* input focusout update start */
                     var focus_destination = '',
                         focus_country = '';
@@ -757,7 +759,7 @@
             container.find("#twidget-city-hotel").keyup(function(){
                 var v = $(this).val(),
                     this_input = $(this);
-                $.getJSON("http://engine.hotellook.com/api/v2/lookup.json?query="+v+"&lang="+_this.settings.locale+"&limit=4", function (data) {
+                $.getJSON("https://engine.hotellook.com/api/v2/lookup.json?query="+v+"&lang="+_this.settings.locale+"&limit=4", function (data) {
                     container.find(".twidget-city-hotel .twidget-auto-fill-wrapper ul li").remove();
                     /* append cities */
                     $.each(data.results.locations, function(key, value){
@@ -876,10 +878,10 @@
             '                            </div>'+
             '                        </li>'+
             '                        <!-- destination input -->'+
-            '                        <li class="twidget-destination">'+
+            '                        <li class="twidget-destination ' + (_this.settings.lock_destination ? 'twidget-input-locked' : '') + '">'+
             '                            <div class="twidget-input-box">'+
             '                                <label for="twidget-origin">'+_this.settings.localization.avia_input_destination_label+'</label>'+
-            '                                <input type="text" id="twidget-destination" placeholder="'+_this.settings.localization.avia_input_destination_label+'" required>'+
+            '                                <input type="text" ' + (_this.settings.lock_destination ? 'disabled' : '') + ' id="twidget-destination" placeholder="'+_this.settings.localization.avia_input_destination_label+'" required>'+
             '                                <input type="hidden" name="destination_iata">'+
             '                                <div class="twidget-pseudo-input">'+
             '                                   <span class="twidget-pseudo-name"></span><span class="twidget-pseudo-country-name"></span>'+
